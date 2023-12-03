@@ -4,14 +4,6 @@
 using namespace std;
 #include <string>
 
-#include "buffer.h"
-#include <cctype>
-#include <iostream>
-#include <istream>
-#include "simpio.h"
-using namespace std;
-using namespace std;
-
 
 EditorBuffer_Link::EditorBuffer_Link(){}
 EditorBuffer_Link::~EditorBuffer_Link(){}

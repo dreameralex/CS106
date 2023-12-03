@@ -11,7 +11,7 @@ void displayBuffer(EditorBuffer & buffer);
 
 void printHelpText();
 
-int main(){
+int main_C13_buffer(){
     EditorBuffer buffer;
     printHelpText();
     cout << endl << "Here we go" << endl << "________________________________________________" << endl;

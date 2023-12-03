@@ -75,6 +75,8 @@ DEFINES     +=  main=qMain qMain=studentMain
 SOURCES         *=  "" \
     C11_4.cpp \
     C12_4.cpp \
+    C13/C13_buffer_link_test.cpp \
+    C13/buffer_link.cpp \
     C13_SimpleTextEditor.cpp \
     C4_3.cpp \
     C4_4.cpp \
@@ -94,6 +96,7 @@ SOURCES         *=  "" \
     rational.cpp \
     stream.cpp
 HEADERS         *=  "" \
+    C13/buffer_link.h \
     C13/test.h \
     buffer.h \
     charstack.h \

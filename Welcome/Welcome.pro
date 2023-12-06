@@ -80,6 +80,10 @@ SOURCES         *=  "" \
     C13/buffer_link_adj.cpp \
     C13/buffer_link_adj_test.cpp \
     C13_SimpleTextEditor.cpp \
+    C14/C14_linkStack_test.cpp \
+    C14/Test_C14.cpp \
+    C14/c14_stack.cpp \
+    C14/link_stack.cpp \
     C4_3.cpp \
     C4_4.cpp \
     C5_1.cpp \
@@ -101,6 +105,8 @@ HEADERS         *=  "" \
     C13/buffer_link.h \
     C13/buffer_link_adj.h \
     C13/test.h \
+    C14/c14_stack.h \
+    C14/link_stack.h \
     buffer.h \
     charstack.h \
     maze.h \

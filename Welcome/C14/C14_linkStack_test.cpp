@@ -5,9 +5,7 @@ using namespace std;
 
 
 
-int main(){
-    cout << "Dear Alex";
-
+int main_c14_link_stack(){
     link_stack<int> A;
     A.push(1);
     A.push(2);

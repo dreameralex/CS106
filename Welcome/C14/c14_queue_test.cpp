@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-int main(){
+int main_testqueue(){
     /*
     C14_queue<int> queue;
     */

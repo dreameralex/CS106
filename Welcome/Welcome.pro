@@ -87,6 +87,13 @@ SOURCES         *=  "" \
     C14/c14_queue_test.cpp \
     C14/c14_stack.cpp \
     C14/link_stack.cpp \
+    C15/Hash_test.cpp \
+    C15/stringmap.cpp \
+    C16/AVL_tree.cpp \
+    C16/bstree.cpp \
+    C16/test_tree.cpp \
+    C17/set_class.cpp \
+    C17/test_set.cpp \
     C4_3.cpp \
     C4_4.cpp \
     C5_1.cpp \
@@ -112,6 +119,9 @@ HEADERS         *=  "" \
     C14/c14_queue.h \
     C14/c14_stack.h \
     C14/link_stack.h \
+    C15/stringmap.h \
+    C16/bstree.h \
+    C17/set_class.h \
     buffer.h \
     charstack.h \
     maze.h \

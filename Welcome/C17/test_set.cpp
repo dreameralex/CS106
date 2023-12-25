@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(){
+int main_set(){
     set_class<int> set1;
     set1.add(1);
     set1.add(2);
@@ -27,6 +27,11 @@ int main(){
     cout << endl << "Add new set" << endl;
     cout << "set2:";
     set2.print();
+
+    cout << "compare set" << endl;
+    if(set1!=set2){
+        cout << "not equl" << endl;
+    }
 
 
 

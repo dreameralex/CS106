@@ -2,6 +2,7 @@
 #include <string>
 #include "graphtypes.h"
 #include "set.h"
+#include "queue.h"
 using namespace std;
 
 void printAdjacencyLists(SimpleGraph &g);
@@ -10,10 +11,20 @@ void addFlight(SimpleGraph & airline, string c1, string c2, int miles);
 void addNode(SimpleGraph & g, string name);
 void addArc(SimpleGraph & g, Node * n1, Node * n2, double cost);
 
+void depthFirstSearch(Node *node);
+void visitUsingDFS(Node *node, Set<Node *> & visited);
+void visit(Node *node);
+void breadthFirstSearch(Node *node);
+
 int main(){
     SimpleGraph airline;
     initAirlineGraph(airline);
     printAdjacencyLists(airline);
+
+    cout << "Use DFS to search" << endl;
+    depthFirstSearch(airline.nodeMap["San Francisco"]);;
+    cout << "Use BFS to search" << endl;
+    breadthFirstSearch(airline.nodeMap["San Francisco"]);
     return -1;
 }
 
@@ -80,3 +91,50 @@ void addArc(SimpleGraph & g, Node * n1, Node * n2, double cost){
     g.arcs.add(arc);
     n1->arcs.add(arc);
 }
+
+void depthFirstSearch(Node *node){
+    Set<Node *> visited;
+    visitUsingDFS(node, visited);
+}
+
+void visitUsingDFS(Node *node, Set<Node *> & visited){
+    if(visited.contains(node)) return;
+    visit(node);
+    visited.add(node);
+    for(Arc *arc: node->arcs){
+        visitUsingDFS(arc->finish, visited);
+    }
+}
+
+void visit(Node *node){
+    cout << node->name << " ";
+}
+
+void breadthFirstSearch(Node *node){
+    Set<Node *> visited;
+    Queue<Node *> queue;
+    queue.enqueue(node);
+    while(!queue.isEmpty()){
+        node = queue.dequeue();
+        if(!visited.contains(node)){
+            visit(node);
+            visited.add(node);
+            for(Arc *arc : node->arcs){
+                queue.enqueue(arc->finish);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

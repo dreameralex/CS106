@@ -95,6 +95,8 @@ SOURCES         *=  "" \
     C17/set_class.cpp \
     C17/test_set.cpp \
     C18/AirlineGraph.cpp \
+    C18/cs106_graph.cpp \
+    C18/test_Cs106_graph.cpp \
     C4_3.cpp \
     C4_4.cpp \
     C5_1.cpp \
@@ -123,6 +125,7 @@ HEADERS         *=  "" \
     C15/stringmap.h \
     C16/bstree.h \
     C17/set_class.h \
+    C18/cs106_graph.h \
     buffer.h \
     charstack.h \
     maze.h \

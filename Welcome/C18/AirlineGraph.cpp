@@ -3,6 +3,7 @@
 #include "graphtypes.h"
 #include "set.h"
 #include "queue.h"
+
 using namespace std;
 
 void printAdjacencyLists(SimpleGraph &g);
@@ -16,7 +17,7 @@ void visitUsingDFS(Node *node, Set<Node *> & visited);
 void visit(Node *node);
 void breadthFirstSearch(Node *node);
 
-int main(){
+int main_ArilineGraph(){
     SimpleGraph airline;
     initAirlineGraph(airline);
     printAdjacencyLists(airline);

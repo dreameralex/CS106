@@ -349,10 +349,6 @@ void Cs106_graph<NodeType,ArcType>::deepCopy(const Cs106_graph & other){
 
 
 
-
-
-
-
 /*
  * Implementation notes: Using DFS to search whole graph
 */

@@ -3,11 +3,16 @@
 #include "cs106_graph.h"
 #include "graph.h"
 #include "queue.h"
+#include "vector.h"
+#include "priorityqueue.h"
 
 using namespace std;
 
 struct NodeType;
 struct ArcType;
+
+double getPathCost(const Vector<ArcType *> & path);
+Vector<ArcType *> findShortestPath(NodeType *start, NodeType *finish);
 
 
 struct NodeType{
@@ -84,13 +89,61 @@ int main(){
     g2=g1;
     cout << "copy graph size is : "<< g2.size();
 
-    cout << "Test serach:" << endl;
-
+    cout << "Test serach BFS:" << endl;
     NodeType *alex_node = g1.getNode("alex");
     g1.breadthFirstSearch(alex_node);
+    cout << endl;
 
+    cout << "Test serach BFS:" << endl;
+    g1.depthFirstSearch(alex_node);
+    cout << endl;
+
+    cout << "Test findShortestPath:" << endl;
+    NodeType *tom_node = g1.getNode("tom");
+    Vector<ArcType *> shortestpath = findShortestPath(tom_node,alex_node);
 
 
     return 1;
 }
 
+/*
+Vector<ArcType *> findShortestPath(NodeType *start, NodeType *finish){
+    Vector<ArcType *> path;
+    PriorityQueue< Vecotr<ArcType *> > queue;
+
+}
+*/
+
+Vector<ArcType *> findShortestPath(NodeType *start, NodeType *finish){
+    Vector<ArcType *> path;
+    PriorityQueue<Vector<ArcType *> > queue;
+    Map<string,double> fixed;
+    while(start!=finish){
+        if(!fixed.containsKey(start->name)){
+            fixed.put(start->name, getPathCost(path));
+            for(ArcType *arc:start->arcs){
+                if(!fixed.containsKey(arc->finish->name)){
+                    path.add(arc);
+                    double cost = getPathCost(path);
+                    queue.enqueue(path,cost);
+                    path.remove(path.size()-1);
+                }
+            }
+        }
+        if(queue.isEmpty()){
+            path.clear();
+            return path;
+        }
+        path = queue.dequeue();
+        start = path[path.size() -1]->finish;
+    }
+    return path;
+}
+
+double getPathCost(const Vector<ArcType *> & path){
+    double cost = 0;
+    for(ArcType *arc : path){
+        cost += arc->cost;
+    }
+    return cost;
+}

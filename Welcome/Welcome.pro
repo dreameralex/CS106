@@ -87,6 +87,7 @@ SOURCES         *=  "" \
     C14/c14_queue_test.cpp \
     C14/c14_stack.cpp \
     C14/link_stack.cpp \
+    C14/test_priority_queue.cpp \
     C15/Hash_test.cpp \
     C15/stringmap.cpp \
     C16/AVL_tree.cpp \
@@ -118,6 +119,7 @@ HEADERS         *=  "" \
     C13/buffer_link.h \
     C13/buffer_link_adj.h \
     C13/test.h \
+    C14/PriorityQueue.h \
     C14/c14_link_queue.h \
     C14/c14_queue.h \
     C14/c14_stack.h \

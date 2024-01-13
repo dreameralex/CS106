@@ -13,7 +13,7 @@ struct ArcType;
 
 double getPathCost(const Vector<ArcType *> & path);
 Vector<ArcType *> findShortestPath(NodeType *start, NodeType *finish);
-
+void show_arcs(const Vector<ArcType *> & path);
 
 struct NodeType{
     std::string name;
@@ -26,7 +26,7 @@ struct ArcType{
     double cost;
 };
 
-int main(){
+int main_testgraph(){
     cout << "test";
 
 
@@ -102,6 +102,18 @@ int main(){
     NodeType *tom_node = g1.getNode("tom");
     Vector<ArcType *> shortestpath = findShortestPath(tom_node,alex_node);
 
+    shortestpath = g1.findShortestPath(tom_node,alex_node);
+
+
+
+
+
+    show_arcs(shortestpath);
+
+
+
+
+
 
     return 1;
 }
@@ -147,3 +159,6 @@ double getPathCost(const Vector<ArcType *> & path){
     }
     return cost;
 }
+
+
+

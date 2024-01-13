@@ -4,6 +4,7 @@
 #include "set.h"
 #include "map.h"
 #include "queue.h"
+#include "priorityqueue.h"
 #include <iostream>
 using namespace std;
 
@@ -47,6 +48,10 @@ public:
     ArcType  *addArc(NodeType *n1, NodeType *n2);
     ArcType  *addArc(ArcType *arc);
 
+    ArcType *get_arc(string start, string finish);
+
+    //ArcType Cs106_graph<NodeType,ArcType>::get_arc(string start, string finish);
+
     void removeArc(std::string s1, std::string s2);
     void removeArc(NodeType *n1, NodeType *n2);
     void removeArc(ArcType *arc);
@@ -77,10 +82,20 @@ public:
 
     /*
      * Methods: copy constructor and assignment operator
-     * These methods implement deep copying for graphs.
+     * Using
      */
     Cs106_graph(const Cs106_graph & src);
     const Cs106_graph & operator=(const Cs106_graph & src);
+
+
+    /*
+     * Methods: Get shortest path
+     * Using Dijkstra's algorithm for finding shortest paths.
+     */
+
+    Vector<ArcType *> findShortestPath(NodeType *start, NodeType *finish);
+    Vector<ArcType *> findShortestPath(std::string s1, std::string s2);
+    double getPathCost(const Vector<ArcType *> & path);
 
 
 private:
@@ -92,6 +107,9 @@ private:
     void deepCopy(const Cs106_graph & src);
     NodeType *getExistingNode(std::string name) const;
 };
+
+
+//void show_arcs(const Vector<ArcType *> & path);
 
 #endif // CS106_GRAPH_H
 
@@ -218,6 +236,21 @@ ArcType *Cs106_graph<NodeType,ArcType>::addArc(ArcType *arc){
     arcs.add(arc);
     return arc;
 }
+
+template <typename NodeType, typename ArcType>
+ArcType* Cs106_graph<NodeType,ArcType>::get_arc(string start, string finish){
+    ArcType *outcome;
+    for(ArcType *arc : arcs){
+        if((arc->start == getNode(start)) & (arc->finish == getNode(finish))){
+
+            outcome = arc;
+            return outcome;
+        }
+    }
+    outcome = NULL;
+    return nullptr;
+}
+
 
 /*
  * Implateation notes: removeArc
@@ -371,7 +404,7 @@ void Cs106_graph<NodeType,ArcType>::visitUsingDFS(NodeType *node, Set<NodeType *
 
 template <typename NodeType, typename ArcType>
 void Cs106_graph<NodeType,ArcType>::visit(NodeType *node){
-    cout << node->name << " ";
+    cout << node->name << "->";
 }
 
 
@@ -393,3 +426,72 @@ void Cs106_graph<NodeType,ArcType>::breadthFirstSearch(NodeType *node){
     }
 }
 
+
+
+
+
+
+/*
+ * Methods: Dijkstra
+*/
+
+
+
+template <typename NodeType, typename ArcType>
+Vector<ArcType *> Cs106_graph<NodeType,ArcType>::findShortestPath(NodeType *start, NodeType *finish){
+    Vector<ArcType *> path;
+    PriorityQueue<Vector<ArcType *> > queue;
+    Map<string,double> fixed;
+    while(start!=finish){
+        if(!fixed.containsKey(start->name)){
+            fixed.put(start->name, getPathCost(path));
+            for(ArcType *arc:start->arcs){
+                if(!fixed.containsKey(arc->finish->name)){
+                    path.add(arc);
+                    double cost = getPathCost(path);
+                    queue.enqueue(path,cost);
+                    path.remove(path.size()-1);
+                }
+            }
+        }
+        if(queue.isEmpty()){
+            path.clear();
+            return path;
+        }
+        path = queue.dequeue();
+        start = path[path.size() -1]->finish;
+    }
+    return path;
+}
+
+template <typename NodeType, typename ArcType>
+Vector<ArcType *> Cs106_graph<NodeType,ArcType>::findShortestPath(std::string s1, std::string s2){
+    NodeType *start = getNode(s1);
+    NodeType *end = getNode(s2);
+    return findShortestPath(start,end);
+}
+
+
+
+template <typename NodeType, typename ArcType>
+double Cs106_graph<NodeType,ArcType>::getPathCost(const Vector<ArcType *> & path){
+    double cost = 0;
+    for(ArcType *arc : path){
+        cost += arc->cost;
+    }
+    return cost;
+}
+
+
+/*
+
+template <typename NodeType, typename ArcType>
+void show_arcs(const Vector<ArcType *> & path){
+    int i = 0;
+    for(auto iter:path){
+
+        cout << "Step" << i <<": " <<iter->cost << endl;
+        i++;
+    }
+}
+*/

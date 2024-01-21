@@ -22,7 +22,7 @@ void Add_AirLine(Cs106_graph<NodeType,ArcType> & airline, string start,string fi
 
 void show_arcs(const Vector<ArcType *> & path);
 
-int main(){
+int main_Airline_graph_head(){
     Cs106_graph<NodeType,ArcType> airline;
     airline.addNode("alex");
 

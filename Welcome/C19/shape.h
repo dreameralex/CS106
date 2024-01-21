@@ -9,7 +9,7 @@ class Shape
 public:
     void setLocation(double x, double y);
 
-    void move(double x, double y);
+    void move(double dx, double dy);
 
     void setColor(std::string color);
 
@@ -58,6 +58,11 @@ public:
 private:
     double width, height; // Dimensions of the rectangle
 
+};
+
+class Circle : public Oval{
+public:
+    Circle(double x, double y, double r);
 };
 
 

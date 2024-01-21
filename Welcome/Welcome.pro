@@ -99,7 +99,10 @@ SOURCES         *=  "" \
     C18/Airlinle_Graph_Using_Head.cpp \
     C18/cs106_graph.cpp \
     C18/test_Cs106_graph.cpp \
+    C19/Interpreter.cpp \
+    C19/exp.cpp \
     C19/shape.cpp \
+    C19/test_shape.cpp \
     C4_3.cpp \
     C4_4.cpp \
     C5_1.cpp \
@@ -130,6 +133,7 @@ HEADERS         *=  "" \
     C16/bstree.h \
     C17/set_class.h \
     C18/cs106_graph.h \
+    C19/exp.h \
     C19/shape.h \
     buffer.h \
     charstack.h \

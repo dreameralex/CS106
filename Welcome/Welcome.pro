@@ -101,6 +101,7 @@ SOURCES         *=  "" \
     C18/test_Cs106_graph.cpp \
     C19/Interpreter.cpp \
     C19/exp.cpp \
+    C19/parser.cpp \
     C19/shape.cpp \
     C19/test_shape.cpp \
     C4_3.cpp \

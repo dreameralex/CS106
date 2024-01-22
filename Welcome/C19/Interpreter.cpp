@@ -7,6 +7,26 @@
 using namespace std;
 
 int main(){
-    cout << 1;
+    EvaluationContext context;
+    TokenScanner scanner;
+    Expression *exp;
+    scanner.ignoreWhitespace();
+    scanner.scanNumbers();
+    while(true){
+        exp = NULL;
+        try{
+            string line;
+            cout << "=> ";
+            getline(cin, line);
+            if(line == "quit") break;
+            scanner.setInput(line);
+            Expression * exp = parseExp(scanner);
+            int value = exp->eval(context);
+            cout << value << endl;
+        }catch (ErrorException & ex){
+            cerr << "Error: " << ex.getMessage() << endl;
+        }
+        if(exp != NULL) delete exp;
+    }
     return 0;
 }
